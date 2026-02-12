@@ -76,6 +76,7 @@ def build_kml_bytes(rows):
             key = (round(loc.longitude, 6), round(loc.latitude, 6))
             locations[key].append(row)
         except Exception:
+            st.error(f"❌ 无法定位: {address}")
             continue
 
     # 生成点
