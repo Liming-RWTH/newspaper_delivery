@@ -59,8 +59,6 @@ def parse_week_days(week_str):
 
 
 def build_kml_bytes(rows):
-    st.write("rows 类型:", type(rows))
-    st.write("rows 行数:", len(rows))
     kml = simplekml.Kml()
     geolocator = Nominatim(user_agent="newspaper_app")
     locations = defaultdict(list)
@@ -71,7 +69,8 @@ def build_kml_bytes(rows):
         try:
             loc = geolocator.geocode(address)
             if not loc:
-                st.warning(f"无法定位: {address}")
+                # st.warning(f"无法定位: {address}")
+                st.error(f"❌ 无法定位: {address}")
                 continue
 
             key = (round(loc.longitude, 6), round(loc.latitude, 6))
@@ -149,10 +148,6 @@ if uploaded_file:
             groups["weekday_234"].append(row)
         if days & {5, 6}:
             groups["weekend_56"].append(row)
-
-        st.write("Monday count:", len(groups["monday"]))
-        st.write("Weekday 234 count:", len(groups["weekday_234"]))
-        st.write("Weekend 56 count:", len(groups["weekend_56"]))
 
 
     if st.button("开始生成 KML"):
