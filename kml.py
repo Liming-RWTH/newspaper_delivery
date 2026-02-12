@@ -69,6 +69,7 @@ def build_kml_bytes(rows):
         try:
             loc = geolocator.geocode(address)
             if not loc:
+                st.warning(f"无法定位: {address}")
                 continue
 
             key = (round(loc.longitude, 6), round(loc.latitude, 6))
