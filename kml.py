@@ -148,4 +148,18 @@ if uploaded_file:
             groups["weekend_56"].append(row)
 
     if st.button("开始生成 KML"):
-        st.info("正在地
+        st.info("正在地理编码地址，请稍等...")
+
+        for group_name, rows in groups.items():
+            if rows:
+                rows_df = pd.DataFrame(rows)
+                kml_bytes = build_kml_bytes(rows_df)
+
+                st.download_button(
+                    label=f"下载 {group_name}.kml",
+                    data=kml_bytes,
+                    file_name=f"{group_name}.kml",
+                    mime="application/vnd.google-earth.kml+xml"
+                )
+
+        st.success("生成完成！")
