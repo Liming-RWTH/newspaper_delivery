@@ -59,7 +59,8 @@ def parse_week_days(week_str):
 
 
 def build_kml_bytes(rows):
-    st.write("进入 build_kml_bytes")
+    st.write("rows 类型:", type(rows))
+    st.write("rows 行数:", len(rows))
     kml = simplekml.Kml()
     geolocator = Nominatim(user_agent="newspaper_app")
     locations = defaultdict(list)
