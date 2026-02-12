@@ -148,6 +148,11 @@ if uploaded_file:
         if days & {5, 6}:
             groups["weekend_56"].append(row)
 
+        st.write("Monday count:", len(groups["monday"]))
+        st.write("Weekday 234 count:", len(groups["weekday_234"]))
+        st.write("Weekend 56 count:", len(groups["weekend_56"]))
+
+
     if st.button("开始生成 KML"):
         st.info("正在地理编码地址，请稍等...")
 
